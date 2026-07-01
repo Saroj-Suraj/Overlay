@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_dark">#0D0F14</color>
+    <color name="surface">#151820</color>
+    <color name="surface_high">#1E2230</color>
+    <color name="border">#2A2F40</color>
+    <color name="blue">#4A8FE7</color>
+    <color name="teal">#2ECFB0</color>
+    <color name="amber">#F5A623</color>
+    <color name="red">#E05C5C</color>
+    <color name="text_primary">#EEF2FF</color>
+    <color name="text_secondary">#8892AA</color>
+    <color name="text_dim">#556070</color>
+    <color name="white">#FFFFFF</color>
+    <color name="toolbar_bg">#E6151820</color>
+</resources>
