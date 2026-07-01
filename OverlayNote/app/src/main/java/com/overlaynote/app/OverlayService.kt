@@ -71,6 +71,16 @@ class OverlayService : Service() {
         windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
     }
 
+    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (::toolbar.isInitialized) {
+            val newHeight = (resources.displayMetrics.heightPixels * 0.85).toInt()
+            val lp = toolbar.layoutParams as WindowManager.LayoutParams
+            lp.height = newHeight
+            windowManager.updateViewLayout(toolbar, lp)
+        }
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == ACTION_STOP) { stopSelf(); return START_NOT_STICKY }
 
