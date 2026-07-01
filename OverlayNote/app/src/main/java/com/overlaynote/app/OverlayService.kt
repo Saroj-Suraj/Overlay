@@ -113,8 +113,9 @@ class OverlayService : Service() {
 
         // Floating toolbar
         toolbar = inflater.inflate(R.layout.overlay_toolbar, null)
+        val maxToolbarHeight = (resources.displayMetrics.heightPixels * 0.85).toInt()
         val tbParams = WindowManager.LayoutParams(
-            WRAP_CONTENT, WRAP_CONTENT,
+            WRAP_CONTENT, maxToolbarHeight,
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                 TYPE_APPLICATION_OVERLAY else TYPE_PHONE,
             FLAG_NOT_FOCUSABLE or FLAG_LAYOUT_IN_SCREEN,
@@ -132,7 +133,7 @@ class OverlayService : Service() {
     private fun bindToolbarButtons(tbParams: WindowManager.LayoutParams) {
 
         // ── Drag handle ──────────────────────────────────────────
-        toolbar.findViewById<View>(R.id.dragHandle).setOnTouchListener { _, e ->
+        toolbar.findViewById<View>(R.id.dragHandleTouchArea).setOnTouchListener { _, e ->
             when (e.action) {
                 MotionEvent.ACTION_DOWN -> {
                     tbInitX = tbParams.x.toFloat(); tbInitY = tbParams.y.toFloat()
