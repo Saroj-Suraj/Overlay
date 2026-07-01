@@ -75,6 +75,7 @@ class OverlayService : Service() {
         if (intent?.action == ACTION_STOP) { stopSelf(); return START_NOT_STICKY }
 
         sessionId = intent?.getStringExtra(EXTRA_SESSION_ID) ?: ""
+        currentPage = 0
 
         // Load existing pages for session
         val session = SessionManager.getSession(this, sessionId)
