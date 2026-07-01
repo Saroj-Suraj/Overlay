@@ -1,0 +1,36 @@
+name: Android CI (OverlayNote)
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'OverlayNote/**' # Triggers only when files inside your app folder change
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'OverlayNote/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      # Notice we explicitly target the script inside OverlayNote
+      run: chmod +x ./OverlayNote/gradlew
+
+    - name: Build with Gradle
+      # working-directory tells GitHub to step into the subfolder before building
+      working-directory: ./OverlayNote
+      run: ./gradlew assembleDebug
+
