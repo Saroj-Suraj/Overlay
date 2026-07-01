@@ -6,6 +6,7 @@ import android.graphics.*
 import android.os.*
 import android.view.*
 import android.widget.*
+import android.view.ContextThemeWrapper
 import androidx.core.app.NotificationCompat
 import android.graphics.PixelFormat
 import android.view.WindowManager.LayoutParams.*
@@ -90,7 +91,7 @@ class OverlayService : Service() {
 
     // ── Build the overlay UI ──────────────────────────────────────
     private fun buildOverlay() {
-        val inflater = LayoutInflater.from(this)
+        val inflater = LayoutInflater.from(ContextThemeWrapper(this, R.style.Theme_OverlayNote))
 
         // Full-screen transparent canvas
         overlayView = inflater.inflate(R.layout.overlay_main, null)
